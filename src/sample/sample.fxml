@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
 <?import javafx.scene.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
@@ -93,24 +94,13 @@
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
                               </Label>
-                              <TextField maxWidth="-Infinity" prefWidth="230.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
-                                 <GridPane.margin>
-                                    <Insets top="2.0" />
-                                 </GridPane.margin>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </TextField>
-                              <DatePicker GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="TOP" />
-                              <DatePicker layoutX="10.0" layoutY="324.0" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="TOP" />
-                              <ChoiceBox prefHeight="25.0" prefWidth="230.0" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP" />
                               <Separator prefWidth="200.0" GridPane.rowIndex="8" />
                            </children>
                         </GridPane>
                      </children></AnchorPane>
                   <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS" GridPane.rowIndex="1">
                      <content>
-                        <ListView maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="511.0" prefWidth="507.0" />
+                        <JFXListView prefHeight="510.0" prefWidth="506.0" />
                      </content></ScrollPane>
                </children>
             </GridPane>
