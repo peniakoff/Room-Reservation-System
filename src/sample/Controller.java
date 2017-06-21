@@ -110,7 +110,7 @@ public class Controller implements Initializable {
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 userName.setText(String.valueOf(resultSet.getInt("user_id")));
-                rooms.getSelectionModel().select();
+//                rooms.getSelectionModel().select();
 //                dataArray[2] = String.valueOf(resultSet.getDate("start_time"));
 //                dataArray[3] = String.valueOf(resultSet.getDate("end_time"));
             }
