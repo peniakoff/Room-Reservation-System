@@ -6,9 +6,12 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ListCell;
 import javafx.scene.input.MouseEvent;
+import javafx.util.StringConverter;
 
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -23,7 +26,7 @@ public class Controller implements Initializable {
     private JFXTextField userName;
 
     @FXML
-    private JFXComboBox rooms;
+    private JFXComboBox<Room> rooms;
 
     @FXML
     private JFXDatePicker startDate;
@@ -42,52 +45,78 @@ public class Controller implements Initializable {
         startTime.setIs24HourView(true);
         endTime.setIs24HourView(true);
 
-        ObservableList<String> items = loadRooms();
+        ObservableList<Room> items = loadRooms();
         rooms.setItems(items);
-        reservations.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-//                String[] reservationData = loadReservation((int)reservations.getSelectionModel().getSelectedItem());
-//                userName.setText(reservationData[0]);
 
+        rooms.setCellFactory((JFXComboBox) -> {
+            return new ListCell<Room>() {
+                @Override
+                protected void updateItem(Room item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (item == null || empty) {
+                        setText(null);
+                    } else {
+                        setText(item.getRoom_number());
+                    }
+                }
+            };
+        });
+
+        rooms.setConverter(new StringConverter<Room>() {
+            @Override
+            public String toString(Room object) {
+                if (object == null) {
+                    return null;
+                } else  {
+                    return object.getRoom_number();
+                }
+            }
+
+            @Override
+            public Room fromString(String string) {
+                return null;
             }
         });
 
+//        reservations.setOnMouseClicked((event) -> {
+//            loadReservation((int)reservations.getSelectionModel().getSelectedItem());
+//        });
+
     }
 
-    private ObservableList<String> loadRooms() {
-
-        ObservableList<String> items = FXCollections.observableArrayList();
-//        Statement statement = MySqlConnector.getInstance().getNewStatement();
-        ResultSet resultSet = null;
-//        try {
-//            resultSet = statement.executeQuery("SELECT * FROM `rr_rooms` ORDER BY `room_number` ASC");
-//            while (resultSet.next()) {
-//                items.add(resultSet.getString("room_number"));
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-        return items;
-    }
-
-/*    private String[] loadReservation(int reservationID) {
+    private ObservableList<Room> loadRooms() {
+        ObservableList<Room> items = FXCollections.observableArrayList();
         Statement statement = MySqlConnector.getInstance().getNewStatement();
-        String[] dataArray = new String[4];
+        ResultSet resultSet = null;
         try {
-            String sql = "";
-            ResultSet resultSet = statement.executeQuery("");
+            resultSet = statement.executeQuery("SELECT * FROM `rr_rooms` ORDER BY `room_number` ASC");
             while (resultSet.next()) {
-                dataArray[0] = String.valueOf(resultSet.getInt("user_id"));
-                dataArray[1] = String.valueOf(resultSet.getInt("room_id"));
-                dataArray[2] = String.valueOf(resultSet.getDate("start_time"));
-                dataArray[3] = String.valueOf(resultSet.getDate("end_time"));
-                return dataArray;
+                items.add(new Room(
+                        resultSet.getInt("id"),
+                        resultSet.getString("room_number"),
+                        resultSet.getInt("room_seats"),
+                        resultSet.getInt("type")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
-    }*/
+        return items;
+    }
+
+    private void loadReservation(int reservationID) {
+        Statement statement = MySqlConnector.getInstance().getNewStatement();
+        try {
+            String sql = "SELECT * FROM `rr_reservation` WHERE `id`='" + reservationID + "' LIMIT 1";
+            ResultSet resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                userName.setText(String.valueOf(resultSet.getInt("user_id")));
+                rooms.getSelectionModel().select();
+//                dataArray[2] = String.valueOf(resultSet.getDate("start_time"));
+//                dataArray[3] = String.valueOf(resultSet.getDate("end_time"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
