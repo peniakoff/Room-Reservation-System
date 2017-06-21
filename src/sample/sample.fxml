@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXScrollPane?>
@@ -44,7 +45,7 @@
                         </AnchorPane>
                         <JFXScrollPane GridPane.rowIndex="1">
                             <children>
-                                <JFXListView />
+                                <JFXListView fx:id="reservations" />
                             </children>
                         </JFXScrollPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-style: solid; -fx-border-width: 0 0 0 1; -fx-background-color: #E0E0E0; -fx-border-color: #BDBDBD;" GridPane.columnIndex="1">
@@ -89,10 +90,13 @@
                                                 <Insets />
                                             </GridPane.margin>
                                         </Label>
-                                        <JFXTextField fx:id="userName" alignment="CENTER" focusColor="#4caf50" promptText="imię i nazwisko zamawiającego" unFocusColor="#4d4d4dc6" GridPane.rowIndex="2">
+                                        <JFXTextField fx:id="userName" focusColor="#4caf50" promptText="imię i nazwisko zamawiającego" unFocusColor="#4d4d4dc6" GridPane.rowIndex="2">
                                             <GridPane.margin>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                             </GridPane.margin>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                                         </JFXTextField>
                                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="280.0" text="Numer sali" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                                             <font>
@@ -102,11 +106,14 @@
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                             </padding>
                                         </Label>
-                                        <JFXListView fx:id="rooms" GridPane.rowIndex="4">
-                                            <GridPane.margin>
-                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                            </GridPane.margin>
-                                        </JFXListView>
+                              <JFXComboBox fx:id="rooms" focusColor="#4caf50" prefHeight="25.0" prefWidth="287.0" promptText="wybierz numer sali" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                                 <GridPane.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </GridPane.margin>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </JFXComboBox>
                                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="155.0" prefHeight="30.0" prefWidth="280.0" text="Termin rezerwacji" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
                                             <font>
                                                 <Font size="14.0" />
@@ -115,11 +122,23 @@
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                             </padding>
                                         </Label>
+                              <JFXDatePicker fx:id="startDate" defaultColor="#43a047" editable="false" prefHeight="25.0" prefWidth="220.0" promptText="dzień rozpoczęcia" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></JFXDatePicker>
+                              <JFXTimePicker fx:id="startTime" defaultColor="#43a047" prefHeight="25.0" prefWidth="220.0" promptText="godzina rozpoczęcia" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></JFXTimePicker>
+                              <JFXDatePicker fx:id="endDate" defaultColor="#d32f2f" editable="false" prefHeight="25.0" prefWidth="220.0" promptText="dzień zakończenia" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></JFXDatePicker>
+                              <JFXTimePicker fx:id="endTime" defaultColor="#d32f2f" prefHeight="25.0" prefWidth="220.0" promptText="godzina zakończenia" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></JFXTimePicker>
                                         <Separator prefWidth="200.0" GridPane.rowIndex="10" />
-                              <JFXDatePicker fx:id="startDate" defaultColor="#43a047" editable="false" prefHeight="25.0" prefWidth="220.0" promptText="dzień rozpoczęcia" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-                              <JFXDatePicker fx:id="endDate" defaultColor="#d32f2f" editable="false" prefHeight="25.0" prefWidth="220.0" promptText="dzień zakończenia" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
-                              <JFXTimePicker fx:id="startTime" defaultColor="#43a047" prefHeight="25.0" prefWidth="220.0" promptText="godzina rozpoczęcia" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
-                              <JFXTimePicker fx:id="endTime" defaultColor="#d32f2f" prefHeight="25.0" prefWidth="220.0" promptText="godzina zakończenia" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER" />
                               <JFXButton fx:id="saveReservation" alignment="CENTER" contentDisplay="CENTER" disable="true" ripplerFill="#43a047" style="-fx-background-color: #C8E6C9;" text="ZAPISZ ZMIANY" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="CENTER">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
@@ -141,7 +160,7 @@
                 </GridPane>
             </content>
         </Tab>
-      <Tab text="Archiwum rezerwacji">
+      <Tab closable="false" text="Archiwum rezerwacji">
          <content>
             <JFXScrollPane>
                <children>
