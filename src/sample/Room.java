@@ -6,14 +6,14 @@ package sample;
 public class Room {
 
     private int id;
-    private String number;
-    private int seats;
+    private String room_number;
+    private int room_seats;
     private int type;
 
-    public Room(int id, String number, int seats, int type) {
+    public Room(int id, String room_number, int room_seats, int type) {
         this.id = id;
-        this.number = number;
-        this.seats = seats;
+        this.room_number = room_number;
+        this.room_seats = room_seats;
         this.type = type;
     }
 
@@ -25,20 +25,20 @@ public class Room {
         this.id = id;
     }
 
-    public String getNumber() {
-        return number;
+    public String getRoom_number() {
+        return room_number;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public void setRoom_number(String room_number) {
+        this.room_number = room_number;
     }
 
-    public int getSeats() {
-        return seats;
+    public int getRoom_seats() {
+        return room_seats;
     }
 
-    public void setSeats(int seats) {
-        this.seats = seats;
+    public void setRoom_seats(int room_seats) {
+        this.room_seats = room_seats;
     }
 
     public int getType() {
@@ -48,5 +48,4 @@ public class Room {
     public void setType(int type) {
         this.type = type;
     }
-
 }
