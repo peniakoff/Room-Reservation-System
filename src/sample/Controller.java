@@ -3,19 +3,18 @@ package sample;
 import com.jfoenix.controls.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListCell;
-import javafx.scene.input.MouseEvent;
 import javafx.util.StringConverter;
 
 import java.net.URL;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
+
+import static sample.Utils.nameChecker;
 
 public class Controller implements Initializable {
 
@@ -39,6 +38,12 @@ public class Controller implements Initializable {
 
     @FXML
     private JFXTimePicker endTime;
+
+    @FXML
+    private JFXButton saveReservation;
+
+    @FXML
+    private JFXButton deleteReservation;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -81,6 +86,12 @@ public class Controller implements Initializable {
 //        reservations.setOnMouseClicked((event) -> {
 //            loadReservation((int)reservations.getSelectionModel().getSelectedItem());
 //        });
+
+//        saveReservation.setDisable(false);
+
+        userName.setOnKeyReleased(event -> {
+            nameChecker(userName);
+        });
 
     }
 
