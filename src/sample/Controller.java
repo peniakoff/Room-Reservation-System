@@ -100,7 +100,7 @@ public class Controller implements Initializable {
         Statement statement = MySqlConnector.getInstance().getNewStatement();
         ResultSet resultSet = null;
         try {
-            resultSet = statement.executeQuery("SELECT * FROM `rr_rooms` ORDER BY `room_number` ASC");
+            resultSet = statement.executeQuery("SELECT * FROM `room` ORDER BY `room_number` ASC");
             while (resultSet.next()) {
                 items.add(new Room(
                         resultSet.getInt("id"),
@@ -117,7 +117,7 @@ public class Controller implements Initializable {
     private void loadReservation(int reservationID) {
         Statement statement = MySqlConnector.getInstance().getNewStatement();
         try {
-            String sql = "SELECT * FROM `rr_reservation` WHERE `id`='" + reservationID + "' LIMIT 1";
+            String sql = "SELECT * FROM `reservation` WHERE `id`='" + reservationID + "' LIMIT 1";
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 userName.setText(String.valueOf(resultSet.getInt("user_id")));
