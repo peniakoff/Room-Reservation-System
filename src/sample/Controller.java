@@ -22,7 +22,7 @@ public class Controller implements Initializable {
     private JFXListView reservations;
 
     @FXML
-    private JFXTextField userName;
+    private JFXComboBox users;
 
     @FXML
     private JFXComboBox<Room> rooms;
@@ -89,9 +89,9 @@ public class Controller implements Initializable {
 
 //        saveReservation.setDisable(false);
 
-        userName.setOnKeyReleased(event -> {
-            nameChecker(userName);
-        });
+//        userName.setOnKeyReleased(event -> {
+//            nameChecker(userName);
+//        });
 
     }
 
@@ -120,7 +120,7 @@ public class Controller implements Initializable {
             String sql = "SELECT * FROM `reservation` WHERE `id`='" + reservationID + "' LIMIT 1";
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
-                userName.setText(String.valueOf(resultSet.getInt("user_id")));
+//                userName.setText(String.valueOf(resultSet.getInt("user_id")));
 //                rooms.getSelectionModel().select();
 //                dataArray[2] = String.valueOf(resultSet.getDate("start_time"));
 //                dataArray[3] = String.valueOf(resultSet.getDate("end_time"));
