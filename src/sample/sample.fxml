@@ -89,7 +89,7 @@
                                                 <Insets />
                                             </GridPane.margin>
                                         </Label>
-                              <JFXComboBox fx:id="userName" focusColor="#4caf50" layoutX="20.0" layoutY="182.0" prefHeight="25.0" prefWidth="287.0" promptText="choose the person" GridPane.rowIndex="2">
+                              <JFXComboBox fx:id="users" focusColor="#4caf50" layoutX="20.0" layoutY="182.0" prefHeight="25.0" prefWidth="287.0" promptText="choose the person" GridPane.rowIndex="2">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
